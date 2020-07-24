@@ -28,17 +28,12 @@ public class Pais {
     private String numericCode="";
     private String flag="";
     private String cioc="";
-    private String
-    private String
-    private String
-    private String
-    private String
-    private String
-    private String
-//currencies
+//currencies -->3campos
            // languages
-//translations
+//translations -->lista
 //regionalBlocs
+        //otherAcronyms -->lista
+        //otherNames -->lista
 
 
 
