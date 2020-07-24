@@ -2,15 +2,16 @@ package com.example.pruebacorte1;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.pruebacorte1.Adapter.adapterPais;
 import com.example.pruebacorte1.Model.Pais;
 import com.example.pruebacorte1.WebService.Asynchtask;
 import com.example.pruebacorte1.WebService.WebService;
-import com.example.pruebacorte1.holder.item;
-import com.mindorks.placeholderview.PlaceHolderView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,16 +41,12 @@ public class MainActivity extends AppCompatActivity implements Asynchtask {
             JSONArray JSONlistaRestaurants= new JSONArray(result);
             lstPais = Pais.JsonObjectsBuild(JSONlistaRestaurants);
 
+            //agregar datos al recyclerView
+            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rcPais);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
 
-            PlaceHolderView mGalleryView = (PlaceHolderView)findViewById(R.id.galleryView);
-            mGalleryView.getBuilder()
-                    .setHasFixedSize(false)
-                    .setItemViewCacheSize(10)
-                    .setLayoutManager(new GridLayoutManager(this, 3));
-            for (int i=0; i<lstPais.size();i++)
-            {
-                mGalleryView.addView(new item(this.getApplicationContext(), mGalleryView, lstPais.get(i).getNombre(), lstPais.get(i).getCodBand()));
-            }
+            adapterPais adapter= new adapterPais(lstPais);
+            recyclerView.setAdapter(adapter);
         }catch (JSONException e)
         {
             Toast.makeText(this.getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG);

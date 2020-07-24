@@ -3,16 +3,19 @@ package com.example.pruebacorte1.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.pruebacorte1.Model.Pais;
+import com.example.pruebacorte1.R;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-public class adapterPais extends RecyclerView.Adapter<adapterPais.ViewHolderRestaurant> {
+public class adapterPais extends RecyclerView.Adapter<adapterPais.ViewHolderPais> {
 
     List<Pais> lstPais;
 
@@ -22,22 +25,33 @@ public class adapterPais extends RecyclerView.Adapter<adapterPais.ViewHolderRest
 
     @NonNull
     @Override
-    public ViewHolderRestaurant onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolderPais onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.gallery_item,null,false);
+        return new ViewHolderPais(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderRestaurant holder, int position) {
-
+    public void onBindViewHolder(@NonNull ViewHolderPais holder, int position) {
+        holder.nombrePais.setText(lstPais.get(position).getNombre());
+        Glide.with(holder.itemView)
+                .load("http://www.geognos.com/api/en/countries/flag/"+lstPais.get(position).getCodBand()+".png")
+                .into(holder.imagen);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return lstPais.size();
     }
 
-    public class ViewHolderRestaurant extends RecyclerView.ViewHolder {
-        public ViewHolderRestaurant(@NonNull View itemView) {
+    public class ViewHolderPais extends RecyclerView.ViewHolder {
+        TextView nombrePais;
+        ImageView imagen;
+
+        public ViewHolderPais(@NonNull View itemView) {
             super(itemView);
+            nombrePais=(TextView) itemView.findViewById(R.id.txtNombrePais);
+            imagen=(ImageView) itemView.findViewById(R.id.imageView);
         }
     }
 }
