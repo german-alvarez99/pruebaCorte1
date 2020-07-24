@@ -11,8 +11,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:cardCornerRadius="6dp"
-        app:cardElevation="6dp"
-        android:onClick="">
+        app:cardElevation="6dp">
 
         <ImageView
             android:id="@+id/imageView"
