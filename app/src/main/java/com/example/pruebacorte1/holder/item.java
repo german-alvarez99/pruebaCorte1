@@ -2,37 +2,35 @@ package com.example.pruebacorte1.holder;
 
 import android.content.Context;
 import android.widget.EditText;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.pruebacorte1.R;
-import com.mindorks.placeholderview.Animation;
 import com.mindorks.placeholderview.PlaceHolderView;
-import com.mindorks.placeholderview.annotations.Animate;
 import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.NonReusable;
-import com.mindorks.placeholderview.annotations.Resolve;
 import com.mindorks.placeholderview.annotations.View;
 
 
-@NonReusable
 @Layout(R.layout.gallery_item)
-public class item {
-    @View(R.id.txt1)
-    private EditText txt1;
+public class item{
+    @View(R.id.imageView)
+    private ImageView imageView;
 
-    @View(R.id.txt2)
-    private EditText txt2;
+    @View(R.id.txt)
+    private EditText txtNombrePais;
 
-    private String mUlr;
+    private String mUlr= "http://www.geognos.com/api/en/countries/flag/";
     private Context mContext;
     private PlaceHolderView mPlaceHolderView;
 
 
-    public item(Context context, PlaceHolderView placeHolderView, String url) {
+    public item(Context context, PlaceHolderView placeHolderView, String nombrePais, String codigoPais) {
         mContext = context;
         mPlaceHolderView = placeHolderView;
-        mUlr = url;
+        txtNombrePais.setText(nombrePais);
+        mUlr = mUlr+codigoPais+".png";
+        Glide.with(mContext).load(mUlr).into(imageView);
     }
-
-
 
 }
