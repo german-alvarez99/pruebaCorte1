@@ -10,7 +10,6 @@ public class Pais {
     private String nombre="";
     private String codBand="";
     private String topLevelDomain="";//
-    private String alpha2Code="";
     private String alpha3Code="";
     private String callingCodes="";//
     private String capital="";
@@ -30,12 +29,35 @@ public class Pais {
     private String cioc="";
     private ArrayList<currencies> v_currencies;
     private ArrayList<languages> v_languages;
-    private ArrayList<translations> v_translations;
+    private String translations;
     private ArrayList<regionalBlocs> v_regionalBlocs;
 
     public Pais(JSONObject jsonObject,int a) throws JSONException {
         nombre=jsonObject.getString("name").toString();
         codBand=jsonObject.getString("alpha2Code").toString();
+        topLevelDomain=jsonObject.getString("topLevelDomain").toString();
+        alpha3Code=jsonObject.getString("alpha3Code").toString();
+        callingCodes=jsonObject.getString("callingCodes").toString();
+        capital=jsonObject.getString("capital").toString();
+        altSpellings=jsonObject.getString("altSpellings").toString();
+        region=jsonObject.getString("region").toString();
+        subregion=jsonObject.getString("subregion").toString();
+        population=jsonObject.getString("population").toString();
+        latlng=jsonObject.getString("latlng").toString();
+        demonym=jsonObject.getString("demonym").toString();
+        area=jsonObject.getString("area").toString();
+        gini=jsonObject.getString("gini").toString();
+        timezones=jsonObject.getString("timezones").toString();
+        borders=jsonObject.getString("borders").toString();
+        nativeName=jsonObject.getString("nativeName").toString();
+        numericCode=jsonObject.getString("numericCode").toString();
+        flag=jsonObject.getString("flag").toString();
+        cioc=jsonObject.getString("cioc").toString();
+        translations=jsonObject.getJSONObject("translations").toString();
+
+        v_currencies=currencies.JsonObjectsBuild(jsonObject.getJSONArray("currencies"));
+        v_languages=languages.JsonObjectsBuild(jsonObject.getJSONArray("languages"));
+        v_regionalBlocs=regionalBlocs.JsonObjectsBuild(jsonObject.getJSONArray("regionalBlocs"));
     }
 
     public static ArrayList<Pais> JsonObjectsBuild2(JSONArray datos) throws JSONException {
