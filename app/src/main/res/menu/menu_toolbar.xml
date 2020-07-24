@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <item android:id="@+id/mnuInformacion"
-        android:title="Informacion general"
-        android:orderInCategory="100"
-        app:showAsAction="never"></item>
-    <item android:id="@+id/mnuLenguaje"
-        android:title="Lenguajes"
-        android:orderInCategory="101"
-        app:showAsAction="never"></item>
-    <item android:id="@+id/mnuBandera"
-        android:title="Bandera"
-        android:orderInCategory="102"
-        app:showAsAction="never"></item>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/mnuInformacion"
+            android:icon="@drawable/information"
+            android:orderInCategory="100"
+            android:title="Informacion general"
+            app:showAsAction="never"></item>
+        <item
+            android:id="@+id/mnuLenguaje"
+            android:icon="@drawable/languje"
+            android:orderInCategory="101"
+            android:title="Lenguajes"
+            app:showAsAction="never"></item>
+        <item
+            android:id="@+id/mnuBandera"
+            android:icon="@drawable/flag"
+            android:orderInCategory="102"
+            android:title="Bandera"
+            app:showAsAction="never"></item>
+    </group>
 </menu>
