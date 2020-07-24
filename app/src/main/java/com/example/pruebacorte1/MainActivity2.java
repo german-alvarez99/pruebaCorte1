@@ -20,15 +20,14 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
 
     DrawerLayout drawerLayout;
     NavigationView navView;
-    EditText txt;
+    String txt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        //txt=findViewById(R.id.txt);
         Intent i = getIntent();
-        //txt.setText(i.getStringExtra("codigo"));
+        txt=i.getStringExtra("codigo");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,7 +67,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
                 fragmentTransaction = true;
                 break;*/
             case R.id.mnuBandera:
-                fragment = new fragmentInformacion();
+                fragment = fragment_bandera.newInstance(txt,"1");
                 fragmentTransaction = true;
                 break;
         }
