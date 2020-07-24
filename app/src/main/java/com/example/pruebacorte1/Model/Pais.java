@@ -28,12 +28,28 @@ public class Pais {
     private String numericCode="";
     private String flag="";
     private String cioc="";
-//currencies -->3campos
-           // languages
-//translations -->lista
-//regionalBlocs
-        //otherAcronyms -->lista
-        //otherNames -->lista
+    private ArrayList<currencies> v_currencies;
+    private ArrayList<languages> v_languages;
+    private ArrayList<translations> v_translations;
+    private ArrayList<regionalBlocs> v_regionalBlocs;
+
+    public Pais(JSONObject jsonObject,int a) throws JSONException {
+        nombre=jsonObject.getString("name").toString();
+        codBand=jsonObject.getString("alpha2Code").toString();
+    }
+
+    public static ArrayList<Pais> JsonObjectsBuild2(JSONArray datos) throws JSONException {
+        ArrayList<Pais> pais = new ArrayList<>();
+        for (int i = 0; i < datos.length(); i++) {
+            pais.add(new Pais(datos.getJSONObject(i),1));
+        }
+        return pais;
+    }
+
+
+
+
+
 
 
 
