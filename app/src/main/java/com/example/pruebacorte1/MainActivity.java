@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.GridLayout;
 import android.widget.Toast;
 
 import com.example.pruebacorte1.Adapter.adapterPais;
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements Asynchtask {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setTitle("Lista de Paises");
 
         Map<String, String> datos = new HashMap<String, String>();
         WebService ws= new WebService("https://restcountries.eu/rest/v2/all",
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements Asynchtask {
 
             //agregar datos al recyclerView
             RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rcPais);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+            recyclerView.setLayoutManager(new GridLayoutManager(this,3));
 
             adapterPais adapter= new adapterPais(lstPais);
             recyclerView.setAdapter(adapter);
@@ -51,5 +53,10 @@ public class MainActivity extends AppCompatActivity implements Asynchtask {
         {
             Toast.makeText(this.getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG);
         }
+    }
+
+    public void onclicbtn(View view)
+    {
+        Toast.makeText(this.getApplicationContext(),"algo" ,Toast.LENGTH_LONG).show();
     }
 }

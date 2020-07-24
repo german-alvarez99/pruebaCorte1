@@ -1,5 +1,8 @@
 package com.example.pruebacorte1.Adapter;
 
+import android.content.Intent;
+import android.os.Parcelable;
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +53,14 @@ public class adapterPais extends RecyclerView.Adapter<adapterPais.ViewHolderPais
 
         public ViewHolderPais(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(v.getContext(), Call.Details.class);
+                    i.putExtra("codigo",  nombrePais.get);
+
+                }
+            });
             nombrePais=(TextView) itemView.findViewById(R.id.txtNombrePais);
             imagen=(ImageView) itemView.findViewById(R.id.imageView);
         }
